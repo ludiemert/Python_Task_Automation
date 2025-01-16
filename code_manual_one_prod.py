@@ -70,60 +70,49 @@ time.sleep(2)
 # se quiser copiar tabela tabela.copy()
 
 # Passo 4 : Cadastrar 1 produto
+#pegar posicao x,y do cod produto
+pyautogui.click(x=463, y=257) # a partir daqui eu quero que ele repita no campo 5, vamos fazer um for
+
+#PROCESSO MANUAL
+#cadastrar o texto na primeira linha, o primeiro produto
+#fazer 1 produto primeiro
+# MOLO000251,Logitech,Mouse,1,25.95,6.50,
+# nome das colunas => codigo,marca,tipo,categoria,preco_unitario,custo,obs
+
+#codigo
+pyautogui.write("MOLO000251")
+pyautogui.press("tab")
+
+#marca
+pyautogui.write("Logitech")
+pyautogui.press("tab")
+
+#tipo
+pyautogui.write("Mouse")
+pyautogui.press("tab")
+
+#categoria
+pyautogui.write("1")
+pyautogui.press("tab")
+
+#preco_unitario
+pyautogui.write("25.95")
+pyautogui.press("tab")
+
+#custo
+pyautogui.write("6.50")
+pyautogui.press("tab")
+
+#obs
+pyautogui.write("")
+pyautogui.press("tab")
+
+#apertar botao de Enviar
+pyautogui.press("enter")
 
 
-# poderia usar o while, mas o while tem que falar qdo comeca e qdo termina, eh outra regra o for eh faz ate o fim
-
-#fazer uma identacao apos o for (um tab) ele executa esse bloco de comandos
-# para o py cada linha eh um index (indice) => tabela.index sao as linhas ta tab
-#para cada linha dentro da minha tabela execute tudo isso:
-for linha in tabela.index:
-
-  # tem que ser o mesmo campo da tabela "da base de dados" (codigo,marca,tipo,categoria,preco_unitario,custo,obs)
-  #pegar posicao x,y do cod produto
-  pyautogui.click(x=463, y=257) # a partir daqui eu quero que ele repita no campo 5, vamos fazer um for
-
-  #codigo
-  codigo = tabela.loc[linha, "codigo"] # variavel codigo => "loc"localiza na minha tabela linha codigo
-  pyautogui.write(str(codigo)) # pyautogui.write("MOLO000251")
-  pyautogui.press("tab")
-
-  #marca
-  marca = tabela.loc[linha, "marca"]
-  pyautogui.write(str(marca))
-  pyautogui.press("tab")
-
-  #tipo
-  tipo = tabela.loc[linha, "tipo"]
-  pyautogui.write(str(tipo))
-  pyautogui.press("tab")
-
-  #categoria
-  categoria = tabela.loc[linha, "categoria"]
-  pyautogui.write(str(categoria))
-  pyautogui.press("tab")
-
-  #preco_unitario
-  preco_unitario = tabela.loc[linha, "preco_unitario"]
-  pyautogui.write(str(preco_unitario))
-  pyautogui.press("tab")
-
-  #custo
-  custo = tabela.loc[linha, "custo"]
-  pyautogui.write(str(custo))
-  pyautogui.press("tab")
-
-  #obs
-  obs = tabela.loc[linha, "obs"]
-  pyautogui.write(str(obs))
-  pyautogui.press("tab")
-
-  #apertar botao de Enviar
-  pyautogui.press("enter")
-
-
-  #dar um scroll p cima da tela, numero positivo scroll sobe numero negativo desce scroll
-  pyautogui.scroll(10000) # numero alto em pixel ele vai p cima da tela,
-  #pode ser colocar a press na  tecla pg up e pg dn
+#dar um scroll p cima da tela, numero positivo scroll sobe numero negativo desce scroll
+pyautogui.scroll(10000) # numero alto em pixel ele vai p cima da tela,
+#pode ser colocar a press na  tecla pg up e pg dn
 
 # Passo 5: Repetir o passo 4 ate acabar todos os produtos
