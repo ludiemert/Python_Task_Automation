@@ -1,13 +1,25 @@
 """
 Este módulo automatiza tarefas usando o PyAutoGUI.
 
+Exemplo:
+- Interações com a interface do usuário
+- Captura de eventos do teclado e mouse
 """
+
+
+"para pausar o projeto qdo estiver executando so colocar o mouse acima do monitor o programa para"
 
 import pyautogui
 
 import time # ja eh um pacote do py
 
 pyautogui.PAUSE = 1 #o pyautogui vai esperar 1 seg p algum delay sera em todo programa esse tempo, ele faz em todo o comando do projeto
+
+# print(pyautogui.size())  # Exibe a resolução da tela
+# pyautogui.click => clicar
+# pyautogui.press => pressionar uma tecla de cada vez
+# pyautogui.write => escrever um texto
+
 
 # Passo 1: Abrir o sistema da empresa
   #sistema :  https://dlp.hashtagtreinamentos.com/python/intensivao/login
@@ -48,6 +60,7 @@ import pandas
 
 # precisa armazenar essa base de dados, preciso criar uma variavel
 # vai ler e armazenar na variavel tabela
+
 tabela = pandas.read_csv("produtos.csv")
 
 print(tabela)
@@ -57,8 +70,11 @@ time.sleep(2)
 #ler um arquivo csv
 # pandas.read_csv("produtos.csv") #passa o produto que quer ler
 
-# Passo 4 : Cadastrar produtos todos um por um
+# Passo 4 : Cadastrar 1 produto
+# poderia usar o while, mas o while tem que falar qdo comeca e qdo termina, eh outra regra o for eh faz ate o fim
 
+#fazer uma identacao apos o for (um tab) ele executa esse bloco de comandos
+# para o py cada linha eh um index (indice) => tabela.index sao as linhas ta tab
 #para cada linha dentro da minha tabela execute tudo isso:
 for linha in tabela.index:
 
@@ -109,5 +125,9 @@ for linha in tabela.index:
 
   #dar um scroll p cima da tela, numero positivo scroll sobe numero negativo desce scroll
   pyautogui.scroll(10000) # numero alto em pixel ele vai p cima da tela,
+  #pode ser colocar a press na  tecla pg up e pg dn
 
+# Passo 5: Repetir o passo 4 ate acabar todos os produtos
 
+# nan qdo aparecer no py ele eh um valor vazio em uma base de dados, o pandas coloca nan em valores vazios
+# nan vem de NOT A NUMBER um valor que nao esta preenchido, precisa trab ele no codig, ex o obs da tab
