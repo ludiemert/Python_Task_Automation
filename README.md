@@ -49,7 +49,7 @@ This script leverages the capabilities of:
 ### Installation
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/automate-tasks-pyautogui.git
+   git clone https://github.com/ludiemert/Python_Task_Automation.git
    ```
 2. Navigate to the project directory:
    ```bash
@@ -99,21 +99,47 @@ codigo,marca,tipo,categoria,preco_unitario,custo,obs
 
 ---
 
-## 💡 Tips
+### Portugues
+# 🛠️ Automação com PyAutoGUI
 
-- Use the `pyautogui.position()` function to find exact screen coordinates.
-- Adjust `pyautogui.PAUSE` for smoother execution.
-- Test each step individually to ensure compatibility with your setup.
+Bem-vindo ao repositório **Automação com PyAutoGUI**, onde a magia da automação transforma tarefas manuais em processos rápidos e eficientes! Este projeto foi desenvolvido para automatizar interações com sistemas baseados em interface gráfica, usando o poder do Python e da biblioteca PyAutoGUI.
+
+---
+
+## 🚀 Funcionalidades
+
+- **Automatização de login:** Efetue login automaticamente em sistemas e sites com credenciais pré-definidas.
+- **Importação de dados:** Integre e manipule arquivos CSV utilizando a biblioteca `pandas`.
+- **Cadastro automatizado:** Insira dados em sistemas com base em arquivos de entrada, simulando interações humanas precisas.
 
 ---
 
-## 📈 Future Enhancements
+## 🧰 Pré-requisitos
 
-- Implement dynamic screen resolution detection.
-- Add error handling for missing or invalid CSV data.
-- Include support for more complex web interactions (e.g., dropdowns, pop-ups).
+Certifique-se de que você tenha os seguintes itens instalados no seu ambiente:
+
+- Python 3.x
+- Biblioteca PyAutoGUI
+- Biblioteca pandas (`pip install pandas openpyxl`)
 
 ---
+
+## 🛠️ Como usar
+
+1. Clone o repositório:
+   ```bash
+    git clone https://github.com/ludiemert/Python_Task_Automation.git
+   ```
+2. Instale as dependências:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Execute o script principal:
+   ```bash
+   python automacao.py
+   ```
+4. Certifique-se de ajustar as coordenadas de clique e o caminho dos arquivos CSV no código conforme necessário.
+
 
 ---
 
