@@ -1,113 +1,105 @@
 """
 Este módulo automatiza tarefas usando o PyAutoGUI.
-
 """
 
+import time
+import pandas as pd  # Renomeando pandas para 'pd', que é uma convenção comum
 import pyautogui
+import keyboard
 
-import time # ja eh um pacote do py
+# Configuração do PyAutoGUI
+pyautogui.PAUSE = 1  # Define um delay padrão entre as ações para evitar erros
 
-pyautogui.PAUSE = 1 #o pyautogui vai esperar 1 seg p algum delay sera em todo programa esse tempo, ele faz em todo o comando do projeto
+try:
+    # === Início do programa ===
+    print("Pressione 'Esc' para interromper o programa a qualquer momento.")
 
-# Passo 1: Abrir o sistema da empresa
-  #sistema :  https://dlp.hashtagtreinamentos.com/python/intensivao/login
+    # Passo 1: Abrir o sistema da empresa
+    print("Abrindo o sistema...")
+    pyautogui.press("win")  # Abrir o menu iniciar
+    pyautogui.write("chrome")  # Digitar 'chrome'
+    pyautogui.press("enter")  # Pressionar Enter para abrir o navegador
+    time.sleep(2)
 
-pyautogui.press("win")
-# abrir o chome
-pyautogui.write("chrome")
-#de enter
-pyautogui.press("enter")
-#adicionar sistema emp
-pyautogui.write("https://dlp.hashtagtreinamentos.com/python/intensivao/login")
-#de enter
-pyautogui.press("enter")
+    # Abrir a URL do sistema
+    pyautogui.write("https://dlp.hashtagtreinamentos.com/python/intensivao/login")
+    pyautogui.press("enter")
+    time.sleep(5)  # Aguardar o carregamento do site
 
-#pedir p o comp esperar 3 seg, porq a net pode estar com dalay, ele faz somente nessa linha
-time.sleep(3) # seu comp vai ficar "dormindo" qto tempo vc quiser, depois vai p prox etapa
+    # Passo 2: Fazer login
+    print("Realizando login...")
+    pyautogui.click(x=466, y=374)  # Clicar no campo de e-mail
+    pyautogui.write("lua@gmail.com")  # Digitar o e-mail
+    pyautogui.press("tab")  # Ir para o campo de senha
+    pyautogui.write("123")  # Digitar a senha
+    pyautogui.press("tab")  # Ir para o botão de login
+    pyautogui.press("enter")  # Fazer login
+    time.sleep(3)  # Aguardar o carregamento do sistema
 
+    # Passo 3: Importar a base de dados dos produtos
+    print("Importando base de dados...")
+    tabela = pd.read_csv("produtos.csv")
+    print(tabela)
+    time.sleep(2)
 
-# Passo 2:   Fazer login
-# tem que clicar no campo de email e selecionar, p isso vc precisa dar click com mouse na tela, o lugar da tela??
-pyautogui.click(x=466, y=374)
-# se quiser dar mais comandos na mesma linha pyautogui.click(x=466, y=374, clicks=2)
-#digitar o email
-pyautogui.write("lua@gmail.com")
-#passar para prox linha senha (tem 2 formas ou pega posicao do mouse ou tecla TAB ele vai p prox linha)
-pyautogui.press("tab")
-#senha
-pyautogui.write("123")
-#prox tecla e depois de enter p entrar no sistema
-pyautogui.press("tab")
-#tecla login
-#prox tecla e depois de enter p entrar no sistema
-pyautogui.press("enter")
+    # Passo 4: Cadastrar produtos
+    print("Cadastrando produtos...")
+    for linha in tabela.index:
+        # Preencher campos com base na tabela
+        pyautogui.click(x=463, y=257)  # Clicar no campo 'Código'
 
-# Passo 3: Importar a base de dados dos produtos
-#instal  pip install pandas openpyxl
-import pandas
+        # Código do produto
+        codigo = tabela.loc[linha, "codigo"]
+        pyautogui.write(str(codigo))
+        pyautogui.press("tab")
 
-# precisa armazenar essa base de dados, preciso criar uma variavel
-# vai ler e armazenar na variavel tabela
-tabela = pandas.read_csv("produtos.csv")
+        # Marca
+        marca = tabela.loc[linha, "marca"]
+        pyautogui.write(str(marca))
+        pyautogui.press("tab")
 
-print(tabela)
+        # Tipo
+        tipo = tabela.loc[linha, "tipo"]
+        pyautogui.write(str(tipo))
+        pyautogui.press("tab")
 
-time.sleep(2)
-# trazer a base de dados para o pandas
-#ler um arquivo csv
-# pandas.read_csv("produtos.csv") #passa o produto que quer ler
+        # Categoria
+        categoria = tabela.loc[linha, "categoria"]
+        pyautogui.write(str(categoria))
+        pyautogui.press("tab")
 
-# Passo 4 : Cadastrar produtos todos um por um
+        # Preço unitário
+        preco_unitario = tabela.loc[linha, "preco_unitario"]
+        pyautogui.write(str(preco_unitario))
+        pyautogui.press("tab")
 
-#para cada linha dentro da minha tabela execute tudo isso:
-for linha in tabela.index:
+        # Custo
+        custo = tabela.loc[linha, "custo"]
+        pyautogui.write(str(custo))
+        pyautogui.press("tab")
 
-  # tem que ser o mesmo campo da tabela "da base de dados" (codigo,marca,tipo,categoria,preco_unitario,custo,obs)
-  #pegar posicao x,y do cod produto
-  pyautogui.click(x=463, y=257) # a partir daqui eu quero que ele repita no campo 5, vamos fazer um for
+        # Observações
+        obs = str(tabela.loc[linha, "obs"])
+        if obs != "nan":  # Verifica se o campo não está vazio
+            pyautogui.write(obs)
+        pyautogui.press("tab")
 
-  #codigo
-  codigo = tabela.loc[linha, "codigo"] # variavel codigo => "loc"localiza na minha tabela linha codigo. o [] porque toda lista de valores do py eh essa regra.
-  pyautogui.write(str(codigo)) # pyautogui.write("MOLO000251") . sempre relacionar algo na tabela usa []
-  pyautogui.press("tab")
+        # Enviar o formulário
+        pyautogui.press("enter")
 
-  #marca
-  marca = tabela.loc[linha, "marca"]
-  pyautogui.write(str(marca)) # str => string = texto
-  pyautogui.press("tab")
+        # Scroll para ajustar a visualização
+        pyautogui.scroll(10000)  # Subir para o topo da tela
 
-  #tipo
-  tipo = tabela.loc[linha, "tipo"]
-  pyautogui.write(str(tipo))
-  pyautogui.press("tab")
+        # Verificar interrupção
+        if keyboard.is_pressed('esc'):
+            print("Programa interrompido pelo usuário.")
+            break
 
-  #categoria
-  categoria = tabela.loc[linha, "categoria"]
-  pyautogui.write(str(categoria))
-  pyautogui.press("tab")
+#Captura especificamente o erro FileNotFoundError, que ocorre quando o programa tenta acessar um arquivo inexistente (no caso, o arquivo produtos.csv).
+except FileNotFoundError:
+    print("Erro: Arquivo 'produtos.csv' não encontrado.")
+except Exception as e: # Captura qualquer outro tipo de erro que não seja o FileNotFoundError.
+    print(f"Erro inesperado: {e}") #Mostra uma mensagem indicando que ocorreu um erro inesperado, junto com os detalhes desse erro.
 
-  #preco_unitario
-  preco_unitario = tabela.loc[linha, "preco_unitario"]
-  pyautogui.write(str(preco_unitario))
-  pyautogui.press("tab")
-
-  #custo
-  custo = tabela.loc[linha, "custo"]
-  pyautogui.write(str(custo))
-  pyautogui.press("tab")
-  #obs
-  #qdo o campo obs estiver vazio oq fazer?
-  #obs ele pode vir vazio prec trab ele
-  obs = str(tabela.loc[linha, "obs"])
-  if obs != "nan" : # se obs for diferente "!=" de nan entao cadastra o obs aqui
-    pyautogui.write(obs)
-  pyautogui.press("tab")
-
-  #apertar botao de Enviar
-  pyautogui.press("enter")
-
-
-  #dar um scroll p cima da tela, numero positivo scroll sobe numero negativo desce scroll
-  pyautogui.scroll(10000) # numero alto em pixel ele vai p cima da tela,
-
-
+finally:
+    print("Encerrando o programa. Obrigado por usar o PyAutoGUI!")
