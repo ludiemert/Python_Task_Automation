@@ -4,6 +4,53 @@ Welcome to **Automate Tasks with PyAutoGUI**, a powerful Python script designed 
 
 ---
 
+<h4 align="center">Automate Tasks with PyAutoGUI 🚀</h4>
+
+<div align="center">
+    <table>
+        <tr>
+            <td style="width: 50%; text-align: center;">
+                <img src="img_proj/1-login.png" style="width: 90%;" alt="1-login.png">
+                <p style="margin-top: 5px;">1-login</p>
+            </td>
+            <td style="width: 50%; text-align: center;">
+                <img src="img_proj/2 - add product.png" style="width: 90%;" alt="2 - add product.png">
+                <p style="margin-top: 5px;">2 - add product</p>
+            </td>
+        </tr>
+    </table>
+</div>
+
+  <br/>
+  <br/>
+
+
+<h4 align="center"> Automate Tasks with PyAutoGUI 🚀 </h4>
+
+<div align="center">
+    <table>
+        <tr>
+           <td style="width: 50%; text-align: center;">
+                <img src="img_proj/3-registr.png" style="width: 90%;" alt="3-registr.png">
+                <p style="margin-top: 5px;"> 3-registr </p>
+            </td>          
+        </tr>
+    </table>
+</div>
+
+  <br/>
+  <br/>
+
+
+---
+
+
+  <br/>
+  <br/>
+
+
+
+
 ## 🌟 Features
 
 - **Open and Navigate Systems**: Automates browser navigation to specified URLs.
